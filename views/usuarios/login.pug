@@ -1,0 +1,26 @@
+extends ../layout 
+
+block content
+    a(href='/') Volver
+    br
+    h1 Inicia Sesión
+    form(action='/auth/login' method='POST')
+        table.table 
+            tr 
+                td
+                    label(for='email') Email:
+                td
+                    input#email(required=true type='text' name='email' class=message ? 'is-invalid' : '')
+
+            tr 
+                td
+                    label(for='pwd') Password:
+                td
+                    input#pwd(required=true type='password' name='password' class=message ? 'is-invalid' : '')
+            tr
+                td 
+                td
+                    input.btn(type='submit' value='Log in')
+                    if message  
+                        br
+                        small#emailHelp.text-danger=message 

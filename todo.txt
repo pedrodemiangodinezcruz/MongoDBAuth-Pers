@@ -1,0 +1,13 @@
+AUTENTICATION
+Agregar una página pública donde la gente pueda crear un nuevo usuario. Deberás incluir algún mecanismo de autenticación en dos pasos, por ejemplo, enviar un correo y que el usuario tenga que verificarlo.
+
+Los campos que debe tener el usuario son los mismos que ya definimos en su modelo: nombre, email, password y bandera que indique si está verificado o no.
+
+Añade una página simple de login donde los usuarios verificados puedan loguearse.
+
+MONGODB PERSISTENCE
+Las bicicletas, los usuarios y las reservas hechas por estos deberán quedar almacenadas en nuestra DB.
+
+
+EXTRACT DB CONNECTION TO A MODULE SO IT ALWAYS RESOLVES
+https://stackoverflow.com/questions/59740300/db-is-not-a-function-error-in-nodejs-using-mongodb

@@ -1,0 +1,61 @@
+extends layout
+
+block cssleaflet
+  link(rel='stylesheet' href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' integrity='sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==' crossorigin='')
+  script(src='https://unpkg.com/leaflet@1.7.1/dist/leaflet.js' integrity='sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==' crossorigin='')
+  style.
+    #map{
+    height: 500px;
+    width: 70%;
+    margin: 0 auto;
+    border: 1px solid black;
+    }
+
+
+block content
+  h1 Welcome, #{user.nombre}
+
+  if user.verificado
+    h3 Usuario verificado ✅
+  else
+    h3 Usuario no verificado ⛔
+  br
+  a(href='bicicletas/') Ver bicicletas
+  br
+  a(href='reservas/create') Reservar bicicleta
+  br
+  a(href=`/usuarios/update/${user._id}`) Editar Perfil
+  br
+  form.inline(method='post' action='/auth/logout')
+    button.link-button(type='submit' name='submit_param' value='submit_value' class='btn')
+        = 'Cerrar Sesión'
+  h1 Tus Reservas
+  table.table 
+      thead  
+          tr 
+              th Código
+              th Bicicleta
+              th Desde
+              th Hasta
+              th Días
+              th Cancelar
+      tbody 
+          each reserva in reservas
+              tr
+                  td=reserva.bicicleta.code
+                  td #{reserva.bicicleta.modelo}, #{reserva.bicicleta.color}
+                  td=reserva.desde
+                  td=reserva.hasta
+                  td=reserva.duracion
+                  td 
+                      form.inline(method='post' action='/reservas/delete/' + reserva._id)
+                          button.link-button(type='submit' name='submit_param' value='submit_value' class='btn')
+                              = 'Cancelar'
+
+  h1 Mapa
+  #map
+  
+
+
+  script(src='javascripts/jquery-3.6.0.min.js')
+  script(src='javascripts/map.js')

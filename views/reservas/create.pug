@@ -1,0 +1,31 @@
+extends ../layout 
+
+block content
+    a(href='/') Volver
+    br
+    h1 Hacer una reservación
+    p A nombre de: #{usuario.nombre}  
+    form(action='/reservas/create' method='POST')
+        input(type='hidden' name='id' value= usuario._id)
+        table.table 
+            tr 
+                td
+                    label(for='bici_id') Bicicleta ID:
+                td
+                    select(name='bici_id')
+                        each bici in bicis
+                            option(value=bici._id) #{bici.modelo} #{bici.color} ##{bici.code}
+            tr 
+                td
+                    label(for='desde') Desde:
+                td
+                    input(type='date' name='desde')
+            tr 
+                td
+                    label(for='hasta') Hasta:
+                td
+                    input(type='date' name='hasta')
+            tr
+                td 
+                td
+                    input.btn(type='submit' value='OK')
